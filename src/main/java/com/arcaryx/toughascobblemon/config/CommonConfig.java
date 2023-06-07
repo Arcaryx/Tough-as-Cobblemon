@@ -18,7 +18,15 @@ public class CommonConfig {
     public final ForgeConfigSpec.DoubleValue temperatureStrengthPerLevel;
 
     // Hydration
-
+    public final ForgeConfigSpec.BooleanValue pokemonGiveWater;
+    public final ForgeConfigSpec.BooleanValue requirePrimaryType;
+    public final ForgeConfigSpec.BooleanValue fillBottle;
+    public final ForgeConfigSpec.BooleanValue fillCanteen;
+    public final ForgeConfigSpec.BooleanValue fillBucket;
+    public final ForgeConfigSpec.IntValue minLevelForDirty;
+    public final ForgeConfigSpec.IntValue minLevelForNormal;
+    public final ForgeConfigSpec.IntValue minLevelForPurified;
+    public final ForgeConfigSpec.IntValue minLevelForBucket;
 
     public CommonConfig(ForgeConfigSpec.Builder builder){
         builder.push("temperature");
@@ -58,10 +66,34 @@ public class CommonConfig {
                 .comment("Strength increase per level for Pokemon to affect the player's temperature.")
                 .defineInRange("temperatureStrengthPerLevel", 0.0, 0.0, 1.0);
         builder.pop().pop().push("hydration");
-
-
-
-
-
+        pokemonGiveWater = builder
+                .comment("Should any Pokemon give the player water.")
+                .define("pokemonGiveWater", true);
+        requirePrimaryType = builder
+                .comment("Should Pokemon need to have Water as their primary type to give water.")
+                .define("requirePrimaryType", false);
+        fillBottle = builder
+                .comment("Can Pokemon fill bottles.")
+                .define("fillBottle", true);
+        fillCanteen = builder
+                .comment("Can Pokemon fill canteens.")
+                .define("fillCanteen", true);
+        fillBucket = builder
+                .comment("Can Pokemon fill buckets.")
+                .define("fillBucket", true);
+        builder.push("level");
+        minLevelForDirty = builder
+                .comment("Minimum level for dirty water.")
+                .defineInRange("minLevelForDirty", 0, 0, 255);
+        minLevelForNormal = builder
+                .comment("Minimum level for normal water.")
+                .defineInRange("minLevelForNormal", 25, 0, 255);
+        minLevelForPurified = builder
+                .comment("Minimum level for purified water.")
+                .defineInRange("minLevelForPurified", 50, 0, 255);
+        minLevelForBucket = builder
+                .comment("Minimum level to fill a water bucket.")
+                .defineInRange("minLevelForBucket", 75, 0, 255);
+        builder.pop().pop();
     }
 }

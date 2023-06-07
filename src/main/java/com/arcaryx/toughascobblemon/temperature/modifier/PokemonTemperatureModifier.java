@@ -43,11 +43,11 @@ public class PokemonTemperatureModifier implements IPlayerTemperatureModifier {
         for (var x : nearbyPlayers) {
             if (!x.getShoulderEntityLeft().isEmpty() && x.getShoulderEntityLeft().contains("Pokemon")) {
                 var pokemonTag = x.getShoulderEntityLeft().getCompound("Pokemon");
-                AddShoulderPokemon(pokemonList, x.is(player), x.distanceToSqr(player), pokemonTag);
+                addShoulderPokemon(pokemonList, x.is(player), x.distanceToSqr(player), pokemonTag);
             }
             if (!x.getShoulderEntityRight().isEmpty() && x.getShoulderEntityRight().contains("Pokemon")) {
                 var pokemonTag = x.getShoulderEntityRight().getCompound("Pokemon");
-                AddShoulderPokemon(pokemonList, x.is(player), x.distanceToSqr(player), pokemonTag);
+                addShoulderPokemon(pokemonList, x.is(player), x.distanceToSqr(player), pokemonTag);
             }
         }
         if (ToughAsCobblemon.COMMON.temperatureRangePerLevel.get() > 0)
@@ -90,7 +90,7 @@ public class PokemonTemperatureModifier implements IPlayerTemperatureModifier {
         return TemperatureLevel.values()[(int)Math.round(newTemp) + 2];
     }
 
-    private void AddShoulderPokemon(ArrayList<PokemonTemp> pokemonList, boolean owned, double dist, CompoundTag pokemonTag) {
+    private void addShoulderPokemon(ArrayList<PokemonTemp> pokemonList, boolean owned, double dist, CompoundTag pokemonTag) {
         var species = new ResourceLocation(pokemonTag.getString("Species"));
         var formTag = pokemonTag.getString("FormId");
         var level = pokemonTag.getShort("Level");
