@@ -1,0 +1,9 @@
+{
+  "required": true,
+  "minVersion": "0.8.5",
+  "package": "com.arcaryx.toughascobblemon.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "toughascobblemon.refmap.json",
+  "mixins": [],
+  "client": []
+}
